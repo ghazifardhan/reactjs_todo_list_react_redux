@@ -1,23 +1,43 @@
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
 import './App.css';
+import Homes from './components/homes/homes';
+import Login from './components/login/login';
+import CreateEditTodo from './components/todos/create_edit_todo';
+import { useDispatch, useSelector } from "react-redux";
+import { checkIsLoggedIn } from './redux/actions/auth_action';
+import PrivateRoute from './router/private_route';
+import {
+  Switch,
+  Route,
+} from "react-router-dom";
 
 function App() {
+
+  const authState = useSelector(state => state.authReducer);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkIsLoggedIn());
+  }, []);
+
+  useEffect(() => {
+    console.log(authState);
+  }, [authState])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* <CheckAuth type={type} /> */}
+      <Switch>
+        <Route exact path="/login" component={Login}/>
+        <PrivateRoute exact path="/">
+          <Homes/>
+        </PrivateRoute>
+        <PrivateRoute path="/home" component={Homes}/>
+        <PrivateRoute excat path="/create_edit_todo">
+          <CreateEditTodo/>
+        </PrivateRoute>
+      </Switch>
+      {/* <Route component={NotFound}/> */}
     </div>
   );
 }

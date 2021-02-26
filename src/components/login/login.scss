@@ -1,0 +1,20 @@
+.container {
+  padding: 20px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  background-color: #F2F2F2;
+}
+
+#nextButton {
+  background-color: #20504C;
+  border-radius: 6px;
+  border: none;
+  color: white;
+}
