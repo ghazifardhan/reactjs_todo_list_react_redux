@@ -5,6 +5,7 @@ import { Avatar, Button, Card, Row, Col } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons"
 import { TodoStatus } from "../../../redux/actions/create_todo_action";
 import moment from 'moment';
+import './card.scss';
 
 function TodoCard (props) {
 
@@ -25,18 +26,12 @@ function TodoCard (props) {
         </Col>
         <Col span={10}>
           <Row>
-            <span style={{
-              fontWeight: 700,
-              fontSize: 12
-            }}>
+            <span className="header">
               {props.item.header}
             </span>
           </Row>
           <Row>
-            <span style={{
-              fontWeight: 300,
-              fontSize: 12
-            }}>
+            <span className="description">
               {props.item.description}
             </span>
           </Row>

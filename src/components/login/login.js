@@ -7,6 +7,7 @@ import {
 import { withRouter } from "react-router-dom";
 import { login, loginTypes } from "../../redux/actions/auth_action";
 import './login.scss';
+import Typewriter from 'typewriter-effect';
 
 function Login(props) {
 
@@ -35,6 +36,15 @@ function Login(props) {
 
   return (
     <div className="container">
+      <div className="typewriter">
+        <Typewriter
+          options={{
+            strings: ['Todo List'],
+            autoStart: true,
+            loop: true,
+          }}
+        />
+      </div>
       <Form
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}>

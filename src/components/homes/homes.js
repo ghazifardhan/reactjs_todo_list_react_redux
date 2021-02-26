@@ -38,7 +38,7 @@ function Homes(props) {
         navigation={props.history}
       />
 
-      <div style={{ marginTop: 50}}>
+      <div className="divider">
         <h1>Hello: {getMeState?.username}</h1>
 
         <Select
@@ -47,7 +47,7 @@ function Homes(props) {
             var ascDesc = value === SortBy.ALPHABETICAL ? "asc" : "desc";
             dispatch(listTodo(getMeState.username, value, ascDesc));
           }}
-          style={{ width: 200 }}
+          className="option"
         >
           <Select.Option value={SortBy.ALPHABETICAL}>Alphabetical</Select.Option>
           <Select.Option value={SortBy.CREATEDAT}>Created At</Select.Option>
