@@ -1,3 +1,4 @@
+import { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteTodo } from "../../../redux/actions/delete_todos_action";
 import { changeTodo } from "../../../redux/actions/change_todo_status_action";
@@ -6,10 +7,21 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons"
 import { TodoStatus } from "../../../redux/actions/create_todo_action";
 import moment from 'moment';
 import './card.scss';
+import ImageViewer from 'react-simple-image-viewer';
 
 function TodoCard (props) {
 
   const dispatch = useDispatch();
+  const [isViewerOpen, setIsViewerOpen] = useState(false);
+  const [images, setImages] = useState([props.item.imageUrl]);
+
+  const openImageViewer = useCallback(() => {
+    setIsViewerOpen(true);
+  }, []);
+
+  const closeImageViewer = useCallback(() => {
+    setIsViewerOpen(false);
+  }, []);
 
   return (
   <Card
@@ -17,8 +29,15 @@ function TodoCard (props) {
       marginBottom: 10,
       borderRadius: 4
     }}>
+      {isViewerOpen && (
+        <ImageViewer
+          src={images}
+          currentIndex={0}
+          onClose={closeImageViewer}
+        />
+      )}
       <Row>
-        <Col span={5}>
+        <Col span={5} onClick={() => openImageViewer()}>
           <Avatar
             src={props.item.imageUrl}
             size={48}
